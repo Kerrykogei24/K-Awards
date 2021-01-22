@@ -25,4 +25,13 @@ class Projects(models.Model):
     link=models.URLField()
     image=models.ImageField(upload_to='images/')
     user = models.ForeignKey(User,on_delete = models.CASCADE)
+
+
+    def save_project(self):
+        self.save()
+
+    @classmethod
+    def all_projects(cls):
     
+    all_projects = cls.objects.all()
+        return all_projects
