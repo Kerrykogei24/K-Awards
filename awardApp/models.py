@@ -73,3 +73,11 @@ class Comments(models.Model):
     def get_all_comments(cls,id):
         comments = cls.objects.filter(project_id = id)
         return comments
+
+    def save_comments(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+        
+
