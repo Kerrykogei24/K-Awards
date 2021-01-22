@@ -9,3 +9,14 @@ from django.db import models
     dpic = models.ImageField(upload_to = 'images/')
     bio = models.TextField(max_length=1000)
     description = models.TextField(max_length=5000)
+
+    def __str__(self):
+        return self.username
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+        
