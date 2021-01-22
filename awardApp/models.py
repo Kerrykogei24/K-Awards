@@ -40,3 +40,8 @@ class Projects(models.Model):
     def one_project(cls,id):
         one_project = cls.objects.filter(id=id)
         return one_project
+
+    @classmethod
+    def user_projects(cls,user):
+        user_projects = cls.objects.filter(user = user)
+        return user_projects
