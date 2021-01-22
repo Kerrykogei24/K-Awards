@@ -59,3 +59,11 @@ class Ratings(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
     
+
+class Comments(models.Model):
+    project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
+    text = models.CharField(max_length=1000)
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.user
