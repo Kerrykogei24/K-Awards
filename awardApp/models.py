@@ -45,3 +45,8 @@ class Projects(models.Model):
     def user_projects(cls,user):
         user_projects = cls.objects.filter(user = user)
         return user_projects
+
+    @classmethod
+    def search_project(cls,search_term):
+        searched_project = cls.objects.filter(title = search_term)
+        return searched_project
