@@ -1,0 +1,38 @@
+ {% extends 'registration/base.html'%} {% load bootstrap4 %} {% block content %}
+<div class="container">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        {% if form.errors %}
+        <p>Please make sure all information is correct</p>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Sign up</h3>
+            </div>
+            <div class="panel-body">
+                <form action="/accounts/register/" method="POST">
+                    {% csrf_token %} {% bootstrap_form form %}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+
+                    </div>
+                    <input type="hidden" name="next" value=" {{next}} ">
+                </form>
+                <p>Already have an account?
+                    <a class="btn btn-primary" href="/accounts/login/">  Log In </a> here
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<style>
+    .caption {
+        font-family: 'Courgette', cursive;
+    }
+    
+    body {
+        background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2f5cf225-3fed-42e2-819a-6b96622e434f/dc69yv5-affb3097-395a-4cb8-b82b-5fba59d6b560.png/v1/fill/w_648,h_1232,q_70,strp/sky_gradient_background_by_glitchyxenon_dc69yv5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTkwMCIsInBhdGgiOiJcL2ZcLzJmNWNmMjI1LTNmZWQtNDJlMi04MTlhLTZiOTY2MjJlNDM0ZlwvZGM2OXl2NS1hZmZiMzA5Ny0zOTVhLTRjYjgtYjgyYi01ZmJhNTlkNmI1NjAucG5nIiwid2lkdGgiOiI8PTEwMDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.NR2PCauVEvSNQTMhoZgEAlwSDKfHbLwxjNzZ3Idq3CQ");
+    }
+</style>
+{% endblock %}
