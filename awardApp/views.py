@@ -133,3 +133,12 @@ def rate(request,id):
         messages.info(request,'Input all fields')
         return redirect('singleproject',id)
         
+
+@login_required(login_url="/accounts/login/")
+def logout_request(request):
+  '''
+  Function for logging out user
+  '''
+
+  logout(request)
+  return redirect('home')
