@@ -106,3 +106,30 @@ def single_project(request,id):
         content = 0       
 
         return render(request,'single_project.html',{'project':project,'comments':comments,'design':design,'usability':usability,'content':usability})
+
+def rate(request,id):
+    if request.method =='POST':
+        rates = Ratings.objects.filter(id = id)
+        for rate in rates:
+            if rate.user == request.user:
+                messages.info(request,'You cannot rate a project twice')
+                return redirect('singleproject',id)
+        design = request.POST.get('design')
+        usability = request.POST.get('usability')
+        content = request.POST.get('content')
+
+        if design and usability and content:
+            project = Projects.objects.get(id = id)
+            rate = Ratings(design = design,usability = usability,content = content,project_id = project,user = request.user)
+            rate.save()
+            return redirect('singleproject',id)
+
+        else:
+            messages.info(request,'Input all fields')
+            return redirect('singleproject',id)
+
+
+    else:
+        messages.info(request,'Input all fields')
+        return redirect('singleproject',id)
+        
