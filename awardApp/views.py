@@ -3,6 +3,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile,Projects,Comments,Ratings
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ProfileSerializer,ProjectSerializer
+from django.contrib.auth import logout
+
 
 
 # Create your views here.
@@ -133,6 +138,17 @@ def rate(request,id):
         messages.info(request,'Input all fields')
         return redirect('singleproject',id)
         
+class ProfileList(APIView):
+    def get(self,request,format = None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many = True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self,request,format = None):
+        all_projects = Projects.objects.all()
+        serializers = ProjectSerializer(all_projects,many = True)
+        return Response(serializers.data)
 
 @login_required(login_url="/accounts/login/")
 def logout_request(request):
