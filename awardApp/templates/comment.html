@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load bootstrap4 %} {% block content %}
+<div style=padding-top:120px;></div>
+<div class="container">
+
+    <div class="card">
+        <div class="card-title"><u>
+          <h1 style="text-align: center;">Leave a comment</h1></u>
+        </div>
+        <div class="row" style="padding: 50px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <img class="img-fluid" src="https://www.netclipart.com/pp/m/275-2750914_feedback-icon-png-white.png" alt="">
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-transparent">
+                    <div class="card-header">
+                        <h3><b><u>Review project</u></b></h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'comment' id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %} {% bootstrap_form form %}
+                            <button type="submit" class="btn btn-outline-success">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+<style>
+    /* body{
+        background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2f5cf225-3fed-42e2-819a-6b96622e434f/dc69yv5-affb3097-395a-4cb8-b82b-5fba59d6b560.png/v1/fill/w_648,h_1232,q_70,strp/sky_gradient_background_by_glitchyxenon_dc69yv5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTkwMCIsInBhdGgiOiJcL2ZcLzJmNWNmMjI1LTNmZWQtNDJlMi04MTlhLTZiOTY2MjJlNDM0ZlwvZGM2OXl2NS1hZmZiMzA5Ny0zOTVhLTRjYjgtYjgyYi01ZmJhNTlkNmI1NjAucG5nIiwid2lkdGgiOiI8PTEwMDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.NR2PCauVEvSNQTMhoZgEAlwSDKfHbLwxjNzZ3Idq3CQ");
+      }
+</style> */ {% endblock %}
