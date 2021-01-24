@@ -44,3 +44,40 @@ def search_results(request):
         message = 'You have not entered anything to search'
         return render(request,'search.html',{'message':message})
 
+def comment(request,id):
+    id = id
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.user = request.user
+            project = Projects.objects.get(id = id)
+            comment.project_id = project
+            comment.save()
+            return redirect('home')
+
+        else:
+            project_id = id
+            messages.info(request,'MAke sure you fill all the fields')
+            return redirect('comment',id = project_id)
+
+    else:
+        id = id
+        form = CommentForm()
+        return render(request,'comment.html',{'form':form,'id':id})
+
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+
+    else:
+        form = EditProfileForm(request.POST,request.FILES)
+    return render(request,'update_profile.html',{'form':form})
+
+    
