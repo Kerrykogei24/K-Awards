@@ -18,7 +18,7 @@ def profile(request):
     return render(request,'profile.html',{'all_projects':all_projects})
 
 def new_project(request):
-      if request.method=='POST':
+    if request.method=='POST':
         form = NewProjectForm(request.POST,request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
@@ -30,3 +30,17 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request,'new_project.html',{'form':form})
+
+def search_results(request):
+
+    if 'project' in request.GET and request.GET['project']:
+        search_term = request.GET.get('project')
+        searched_projects = Projects.search_project(search_term)
+        message = f'{search_term}'
+
+        return render(request,'search.html',{'message':message,'project':searched_projects})
+
+    else:
+        message = 'You have not entered anything to search'
+        return render(request,'search.html',{'message':message})
+
