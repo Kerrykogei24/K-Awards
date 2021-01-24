@@ -1,0 +1,24 @@
+{% load bootstrap4 %} {% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> {% if title %}
+    <title>
+        {{title}}
+    </title>
+    {% endif %} {% block styles %} {% bootstrap_css %} {% endblock %}
+</head>
+
+<body>
+    {% include 'navbar.html' %} {% block content %} {% endblock %} {% block scripts %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Lato&display=swap" rel="stylesheet"> {% bootstrap_javascript %} {% endblock %}
+</body>
+
+</html>

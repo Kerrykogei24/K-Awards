@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
- class Profile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User,on_delete = models.CASCADE)
     dpic = models.ImageField(upload_to = 'images/')
     bio = models.TextField(max_length=1000)
@@ -35,7 +35,7 @@ class Projects(models.Model):
     @classmethod
     def all_projects(cls):
     
-    all_projects = cls.objects.all()
+        all_projects = cls.objects.all()
         return all_projects
 
     @classmethod
