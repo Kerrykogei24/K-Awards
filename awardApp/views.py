@@ -11,4 +11,8 @@ def index(request):
     all_projects = Projects.all_projects()
     return render(request,'index.html',{'all_projects':all_projects})
 
+def profile(request):
+    
+    all_projects = Projects.objects.filter(user = request.user)
+    return render(request,'profile.html',{'all_projects':all_projects})
 
