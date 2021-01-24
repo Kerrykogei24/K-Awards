@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Projects,Comments,Ratings
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from .forms import NewProjectForm,CommentForm,EditProfileForm
+from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import ProfileSerializer,ProjectSerializer
@@ -11,17 +13,20 @@ from django.contrib.auth import logout
 
 
 # Create your views here.
-
+@login_required(login_url = '/accounts/login/')
 def index(request):
 
     all_projects = Projects.all_projects()
     return render(request,'index.html',{'all_projects':all_projects})
 
+@login_required(login_url = '/accounts/login/')
 def profile(request):
 
     all_projects = Projects.objects.filter(user = request.user)
     return render(request,'profile.html',{'all_projects':all_projects})
 
+
+@login_required(login_url = '/accounts/login/')
 def new_project(request):
     if request.method=='POST':
         form = NewProjectForm(request.POST,request.FILES)
@@ -36,6 +41,8 @@ def new_project(request):
         form = NewProjectForm()
     return render(request,'new_project.html',{'form':form})
 
+
+@login_required(login_url = '/accounts/login/')
 def search_results(request):
 
     if 'project' in request.GET and request.GET['project']:
@@ -49,6 +56,8 @@ def search_results(request):
         message = 'You have not entered anything to search'
         return render(request,'search.html',{'message':message})
 
+
+@login_required(login_url = '/accounts/login/')
 def comment(request,id):
     id = id
     if request.method == 'POST':
@@ -71,6 +80,8 @@ def comment(request,id):
         form = CommentForm()
         return render(request,'comment.html',{'form':form,'id':id})
 
+
+@login_required(login_url = '/accounts/login/')
 def edit_profile(request):
     user = request.user
     if request.method == 'POST':
@@ -85,6 +96,8 @@ def edit_profile(request):
         form = EditProfileForm(request.POST,request.FILES)
     return render(request,'update_profile.html',{'form':form})
 
+
+@login_required(login_url = '/accounts/login/')
 def single_project(request,id):  
 
     project = Projects.objects.get(id = id)
@@ -112,6 +125,8 @@ def single_project(request,id):
 
         return render(request,'single_project.html',{'project':project,'comments':comments,'design':design,'usability':usability,'content':usability})
 
+
+@login_required(login_url = '/accounts/login/')
 def rate(request,id):
     if request.method =='POST':
         rates = Ratings.objects.filter(id = id)
