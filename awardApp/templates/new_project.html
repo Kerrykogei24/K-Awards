@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load bootstrap4 %} {% block content %}
+<!-- <div class="container"> -->
+<div style=padding-top:120px;></div>
+<div id="projo-body" style="overflow-x: hidden;">
+    <div class="row ">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <img class="img-fluid" src="https://normsonline.files.wordpress.com/2012/03/award1.jpg" alt="pic">
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-transparent">
+                <div class="card-header">
+                    <h3><b><u>Post on your timeline</u></b></h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'newproject' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %} {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-success" style="margin-left: 10%;">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+
+    </div>
+
+
+</div>
+
+{% endblock content %}
