@@ -1,0 +1,1 @@
+web: gunicorn kawardPro.wsgi --log-file -
