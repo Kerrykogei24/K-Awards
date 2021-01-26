@@ -76,7 +76,7 @@ There are no know bugs at the moment
 # License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Kerrykogei24/K-Awards)
 MIT License
-\_ **Kerry Komar @2019**
+\_ **Kerry Komar @2021**
 
 
 # Collaboration Information
