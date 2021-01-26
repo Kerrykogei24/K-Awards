@@ -35,16 +35,11 @@ class ProfileTEst(TestCase):
 
 class ProjectsTestCase(TestCase):
     def setUp(self):
-        '''
-        Creating new instances of the image
-        '''
+     
         self.new_post = Projects(image = 'pic.jpg',title = 'picture',description = 'Nice picture',user = joker,link = 'https://trial.com')
 
 
     def test_save_image(self):
-        '''
-        Test case to save image post created
-        '''
         self.picture.save_image()
         pictures = Image.objects.all()
         self.assertEqual(len(pictures),1)
