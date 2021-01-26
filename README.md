@@ -54,7 +54,7 @@ python3 manage.py test
 
 # Technologies Used
 This project was generated with
-  * [Python](https://www.python.org/) version 3.8.0.
+  * [Python](https://www.python.org/) version 3.6.9.
   * Django
   * Bootstrap.
   * javascript.
