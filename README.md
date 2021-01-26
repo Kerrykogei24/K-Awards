@@ -1,6 +1,6 @@
 # ~~K Awards~~.
 # Author
-[kerry](https://github.com/Kerrykogei24/K-Awards)
+[kerry komar](https://github.com/Kerrykogei24/K-Awards)
 
 # Description
 An application for rating and reviewing websites 
